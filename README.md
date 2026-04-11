@@ -39,26 +39,26 @@ Users can create accounts, log in securely, and manage their own workouts and ex
 
 ## How to Run the Project
 
-### 1. Clone the repository
+1. Clone the repository
 ```bash id="k2l1q8"
 git clone https://github.com/YOUR_USERNAME/fitness-tracker-api.git
 cd fitness-tracker-api
 
-### 2. Install dependencies
+2. Install dependencies
 npm install
 
-### 3. Create environment variables
+3. Create environment variables
 
 Create a .env file in the root folder:
 
 JWT_SECRET=supersecretkey
 
-### 4. (Optional) Seed the database
+4. (Optional) Seed the database
 npm run seed
 
 This will create sample users, workouts, and exercises.
 
-### 5. Start the server
+5. Start the server
 node server.js
 
 The API will run at:
