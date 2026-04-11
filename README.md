@@ -64,12 +64,16 @@ node server.js
 The API will run at:
 
 http://localhost:3000
-How to Use the API
+
+How to Use the API:
 Register a user account
 Log in to receive a JWT token
 Add the token to all protected requests:
 Authorization: Bearer YOUR_TOKEN
 Use the API to create, view, update, and delete workouts and exercises
+
+Postman Documentation:
+[https://documenter.getpostman.com/view/52311306/2sBXitCmzG]
 
 Project Highlights
 
