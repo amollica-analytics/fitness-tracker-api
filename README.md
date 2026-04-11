@@ -40,7 +40,7 @@ Users can create accounts, log in securely, and manage their own workouts and ex
 ## How to Run the Project
 
 1. Clone the repository
-```bash id="k2l1q8"
+bash id="k2l1q8"
 git clone https://github.com/YOUR_USERNAME/fitness-tracker-api.git
 cd fitness-tracker-api
 
@@ -82,3 +82,4 @@ Role-based authorization (User vs Admin)
 Full CRUD functionality
 Secure password hashing with bcrypt
 API testing with Postman
+```
