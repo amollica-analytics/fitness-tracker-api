@@ -1,48 +1,88 @@
-rkouts` WHERE `id` = 2
-Executing (default): SELECT `id`, `type`, `duration`, `calories`, `createdAt`, `updatedAt`, `UserId` FROM `Workouts` AS `Workout` WHERE `Workout`.`UserId` = 1;
-Executing (default): SELECT `id`, `name`, `sets`, `reps`, `weight`, `createdAt`, `updatedAt`, `WorkoutId` FROM `Exercises` AS `Exercise`;
-Executing (default): INSERT INTO `Exercises` (`id`,`name`,`sets`,`reps`,`weight`,`createdAt`,`updatedAt`,`WorkoutId`) VALUES (NULL,$1,$2,$3,$4,$5,$6,$7);
-Executing (default): SELECT `id`, `name`, `sets`, `reps`, `weight`, `createdAt`, `updatedAt`, `WorkoutId` FROM `Exercises` AS `Exercise` WHERE `Exercise`.`id` = '1';
-Executing (default): SELECT `id`, `name`, `sets`, `reps`, `weight`, `createdAt`, `updatedAt`, `WorkoutId` FR`Exercises` AS `Exercise` WHERE `Exercise`.`id` = '2';
-Executing (default): UPDATE `Exercises` SET `name`=$1,`sets`=$2,`reps`=$3,`weight`=$4,`updatedAt`=$5 WHERE `id` = $6
-Executing (default): SELECT `id`, `name`, `sets`, `reps`, `weight`, `createdAt`, `updatedAt`, `WorkoutId` FROM `Exercises` AS `Exercise`;       
-PS C:\Users\aj4ho\fitness-tracker-api> git add .
-PS C:\Users\aj4ho\fitness-tracker-ap> git commit -m "Finalized and updated Fitness Tracker"
-[main 26f5251] Finalized and updated Fitness Tracker
- 3 files changed, 35 insertions(+), 10 deletions(-)
-PS C:\Users\aj4ho\fitness-tracker-api> git push
-To https://github.com/amollica-analytics/fitness-tracker-api.git        
- ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/amollica-analytics/fitness-tracker-api.git'
-hint: Updates were rejected because the remote contains work that you do not
-hint: have locally. This is usually caused by another repository pushing to
-hint: the same ref. If you want to integrate the remote changes, use    
-hint: 'git pull' before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-PS C:\Users\aj4ho\fitness-tracker-api> git push
-To https://github.com/amollica-analytics/fitness-tracker-api.git        
- ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/amollica-analytics/fitness-tracker-api.git'
-hint: Updates were rejected because the remote contains work that you do not
-hint: have locally. This is usually caused by another repository pushing to
-hint: the same ref. If you want to integrate the remote changes, use    
-hint: 'git pull' before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-PS C:\Users\aj4ho\fitness-tracker-api> git add .
-PS C:\Users\aj4ho\fitness-tracker-api> git commit -m 'Finalized project'
+# fitness-tracker-api
 
-On branch main
-Your branch is ahead of 'origin/main' by 1 commit.
-  (use "git push" to publish your local commits)
+# Personal Fitness Tracker API
 
-nothing to commit, working tree clean
-PS C:\Users\aj4ho\fitness-tracker-api> git push
-To https://github.com/amollica-analytics/fitness-tracker-api.git        
- ! [rejected]        main -> main (fetch first)
-error: failed to push some refs to 'https://github.com/amollica-analytics/fitness-tracker-api.git'
-hint: Updates were rejected because the remote contains work that you do not
-hint: have locally. This is usually caused by another repository pushing to
-hint: the same ref. If you want to integrate the remote changes, use    
-hint: 'git pull' before pushing again.
-hint: See the 'Note about fast-forwards' in 'git push --help' for details.
-PS C:\Users\aj4ho\fitness-tracker-api>
+## Project Overview
+
+The Personal Fitness Tracker API is a backend RESTful service built using Node.js and Express.js. It allows users to log workouts and exercises, track fitness progress, and manage their training data over time.
+
+This project demonstrates backend development skills including RESTful API design, database modeling, authentication, and role-based authorization.
+
+Users can create accounts, log in securely, and manage their own workouts and exercises. Admin users have additional permissions to manage all user data.
+
+---
+
+## Features
+
+- User registration and login system
+- JWT-based authentication
+- Role-based access control (User / Admin)
+- Create, read, update, and delete workouts
+- Create, read, update, and delete exercises
+- Relational database using Sequelize ORM
+- Secure password hashing using bcrypt
+- Error handling for API requests
+
+---
+
+## Technologies Used
+
+- Node.js
+- Express.js
+- Sequelize ORM
+- SQLite
+- JSON Web Tokens (JWT)
+- bcrypt
+- Postman (for testing)
+
+---
+
+## How to Run the Project
+
+1. Clone the repository
+bash id="k2l1q8"
+git clone [https://github.com/amollica-analytics/fitness-tracker-api.git
+cd fitness-tracker-api]
+
+2. Install dependencies
+npm install
+
+3. Create environment variables
+
+Create a .env file in the root folder:
+
+JWT_SECRET=supersecretkey
+
+4. (Optional) Seed the database
+npm run seed
+
+This will create sample users, workouts, and exercises.
+
+5. Start the server
+node server.js
+
+The API will run at:
+
+http://localhost:3000
+
+How to Use the API:
+Register a user account
+Log in to receive a JWT token
+Add the token to all protected requests:
+Authorization: Bearer YOUR_TOKEN
+Use the API to create, view, update, and delete workouts and exercises
+
+Postman Documentation:
+[https://documenter.getpostman.com/view/52311306/2sBXitCmzG]
+
+Project Highlights
+
+This project demonstrates:
+
+REST API development using Express
+Relational database design using Sequelize
+Authentication using JWT
+Role-based authorization (User vs Admin)
+Full CRUD functionality
+Secure password hashing with bcrypt
+API testing with Postman
