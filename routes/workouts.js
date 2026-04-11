@@ -51,19 +51,28 @@ router.put('/:id', auth, async (req, res) => {
 
 router.delete('/:id', auth, async (req, res) => {
 
-  const workout = await Workout.findByPk(req.params.id)
+  try {
 
-  if (!workout) {
-    return res.status(404).json({ message: "Workout not found" })
+    const workout = await Workout.findByPk(req.params.id)
+
+    if (!workout) {
+      return res.status(404).json({ message: "Workout not found" })
+    }
+
+    // make sure user owns the workout
+    if (workout.UserId !== req.user.id) {
+      return res.status(403).json({ message: "Not authorized to delete this workout" })
+    }
+
+    await workout.destroy()
+
+    res.json({ message: "Workout deleted successfully" })
+
+  } catch (error) {
+
+    res.status(500).json({ error: error.message })
+
   }
-
-  if (workout.UserId !== req.user.id) {
-    return res.status(403).json({ message: "Not your workout" })
-  }
-
-  await workout.destroy()
-
-  res.json({ message: "Workout deleted" })
 
 })
 

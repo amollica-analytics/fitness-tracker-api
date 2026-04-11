@@ -18,6 +18,22 @@ router.post('/', auth, async (req, res) => {
 
 })
 
+router.get('/', auth, async (req, res) => {
+
+  try {
+
+    const exercises = await Exercise.findAll()
+
+    res.json(exercises)
+
+  } catch (error) {
+
+    res.status(500).json({ error: error.message })
+
+  }
+
+})
+
 router.put('/:id', auth, async (req, res) => {
 
   const exercise = await Exercise.findByPk(req.params.id)
@@ -47,7 +63,7 @@ router.delete('/:id', auth, async (req, res) => {
 
   await exercise.destroy()
 
-  res.json({ message: "Exercise deleted" })
+  res.json({ message: "Exercise deleted successfully" })
 
 })
 
