@@ -41,8 +41,8 @@ Users can create accounts, log in securely, and manage their own workouts and ex
 
 1. Clone the repository
 bash id="k2l1q8"
-git clone https://github.com/YOUR_USERNAME/fitness-tracker-api.git
-cd fitness-tracker-api
+git clone [https://github.com/amollica-analytics/fitness-tracker-api.git
+cd fitness-tracker-api]
 
 2. Install dependencies
 npm install
