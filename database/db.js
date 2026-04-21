@@ -10,10 +10,10 @@
 
 const { Sequelize } = require('sequelize')
 
-/**
- * Create a new Sequelize instance.
- * The connection string is read from the environment variable DATABASE_URL.
- */
+if (!process.env.DATABASE_URL) {
+  throw new Error("DATABASE_URL is not set")
+}
+
 const sequelize = new Sequelize(process.env.DATABASE_URL, {
   dialect: 'postgres',
   dialectOptions: {
@@ -25,8 +25,4 @@ const sequelize = new Sequelize(process.env.DATABASE_URL, {
   logging: false
 })
 
-/**
- * Export the Sequelize connection so it can be used
- * throughout the application (models, server, seed scripts).
- */
 module.exports = sequelize
