@@ -98,55 +98,53 @@ Authorization: Bearer YOUR_TOKEN
 User Roles & Permissions
 
 ### User
-Can manage their own workouts
-Can view exercises
-Cannot access other users' data
+- Can manage their own workouts
+- Can view exercises
+- Cannot access other users' data
 
 ### Admin
-Full access to all users
-Can delete users
-Can access all workouts and exercises
-API Endpoints
+- Full access to all users
+- Can delete users
+- Can access all workouts and exercises
+- API Endpoints
 
 ### Users
-Method	Endpoint	Access
-GET	/users	Admin
-DELETE	/users/:id	Admin
+- Method	Endpoint	Access
+- GET	/users	Admin
+- DELETE	/users/:id	Admin
 
 ### Workouts
-Method	Endpoint	Access
-POST	/workouts	Auth User
-GET	/workouts	Auth User
-DELETE	/workouts/:id	Owner/Admin
+- Method	Endpoint	Access
+- POST	/workouts	Auth User
+- GET	/workouts	Auth User
+- DELETE	/workouts/:id	Owner/Admin
 
 ### Exercises
-Method	Endpoint	Access
-POST	/exercises	Auth User
-GET	/exercises	Auth User
+- Method	Endpoint	Access
+- POST	/exercises	Auth User
+- GET	/exercises	Auth User
 
 ### Error Handling
-401 Unauthorized
+- 401 Unauthorized
 { "message": "No token provided" }
-403 Forbidden
+- 403 Forbidden
 { "message": "Forbidden - insufficient permissions" }
-404 Not Found
+- 404 Not Found
 { "message": "Resource not found" }
-500 Server Error
+- 500 Server Error
 { "message": "Internal Server Error" }
 
 ### Postman Documentation:
 [https://documenter.getpostman.com/view/52311306/2sBXitCmzG]
 
-Project Highlights
+## This project demonstrates:
 
-This project demonstrates:
-
-REST API development using Express
-Relational database design using Sequelize
-Authentication using JWT
-Role-based authorization (User vs Admin)
-Full CRUD functionality
-Secure password hashing with bcrypt
-API testing with Postman
-Error Handling 
-Error Handling
+- REST API development using Express
+- Relational database design using Sequelize
+- Authentication using JWT
+- Role-based authorization (User vs Admin)
+- Full CRUD functionality
+- Secure password hashing with bcrypt
+- API testing with Postman
+- Error Handling 
+- Error Handling
