@@ -64,7 +64,7 @@ node server.js
 The API will run at:
 
 http://localhost:3000
-
+---
 ## Authentication Guide
 Step 1: Register User
 
@@ -97,34 +97,34 @@ Add this header to ALL protected routes:
 Authorization: Bearer YOUR_TOKEN
 User Roles & Permissions
 
-User
+### User
 Can manage their own workouts
 Can view exercises
 Cannot access other users' data
 
-Admin
+### Admin
 Full access to all users
 Can delete users
 Can access all workouts and exercises
 API Endpoints
 
-Users
+### Users
 Method	Endpoint	Access
 GET	/users	Admin
 DELETE	/users/:id	Admin
 
-Workouts
+### Workouts
 Method	Endpoint	Access
 POST	/workouts	Auth User
 GET	/workouts	Auth User
 DELETE	/workouts/:id	Owner/Admin
 
-Exercises
+### Exercises
 Method	Endpoint	Access
 POST	/exercises	Auth User
 GET	/exercises	Auth User
 
-Error Handling
+### Error Handling
 401 Unauthorized
 { "message": "No token provided" }
 403 Forbidden
@@ -133,7 +133,8 @@ Error Handling
 { "message": "Resource not found" }
 500 Server Error
 { "message": "Internal Server Error" }
-Postman Documentation:
+
+### Postman Documentation:
 [https://documenter.getpostman.com/view/52311306/2sBXitCmzG]
 
 Project Highlights
@@ -147,3 +148,5 @@ Role-based authorization (User vs Admin)
 Full CRUD functionality
 Secure password hashing with bcrypt
 API testing with Postman
+Error Handling 
+Error Handling
