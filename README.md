@@ -1,5 +1,3 @@
-# fitness-tracker-api
-
 # Personal Fitness Tracker API
 
 ## Project Overview
