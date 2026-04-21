@@ -12,13 +12,17 @@ const { Sequelize } = require('sequelize')
 
 /**
  * Create a new Sequelize instance.
- *
- * dialect: specifies the type of database (SQLite in this case)
- * storage: path to the SQLite database file
+ * The connection string is read from the environment variable DATABASE_URL.
  */
-const sequelize = new Sequelize({
-  dialect: 'sqlite',
-  storage: './database/database.sqlite'
+const sequelize = new Sequelize(process.env.DATABASE_URL, {
+  dialect: 'postgres',
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false
+    }
+  },
+  logging: false
 })
 
 /**
