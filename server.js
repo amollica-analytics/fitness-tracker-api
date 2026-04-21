@@ -1,27 +1,62 @@
-require('dotenv').config()
+/**
+ * Main Server File
+ */
 
-const express = require('express')
+const express = require("express");
+const dotenv = require("dotenv");
 
-const { sequelize } = require('./models')
+dotenv.config();
 
-const userRoutes = require('./routes/users')
-const workoutRoutes = require('./routes/workouts')
-const exerciseRoutes = require('./routes/exercises')
+// ======================
+// IMPORTS
+// ======================
+const logger = require("./middleware/logger");
+const errorHandler = require("./middleware/errorHandler");
 
-const app = express()
+// ⚠️ Make sure these exist in your project
+const userRoutes = require("./routes/users");
+const workoutRoutes = require("./routes/workouts");
+const exerciseRoutes = require("./routes/exercises");
 
-app.use(express.json())
+const sequelize = require("./database/db"); // adjust if needed
 
-app.use('/users', userRoutes)
-app.use('/workouts', workoutRoutes)
-app.use('/exercises', exerciseRoutes)
+// ======================
+// INIT APP
+// ======================
+const app = express();
+const PORT = process.env.PORT || 3000;
 
-sequelize.sync().then(() => {
+// ======================
+// MIDDLEWARE
+// ======================
+app.use(express.json());
+app.use(logger);
 
-  app.listen(3000, () => {
+// ======================
+// ROUTES
+// ======================
+app.use("/users", userRoutes);
+app.use("/workouts", workoutRoutes);
+app.use("/exercises", exerciseRoutes);
+const authRoutes = require("./routes/auth");
 
-    console.log("Server running on port 3000")
+app.use("/auth", authRoutes);
+// ======================
+// ERROR HANDLER (MUST BE LAST MIDDLEWARE)
+// ======================
+app.use(errorHandler);
 
+// ======================
+// DATABASE + SERVER START
+// ======================
+sequelize.sync({ alter: true })
+  .then(() => {
+    console.log("Database connected successfully");
+
+    app.listen(PORT, () => {
+      console.log(`Server running at http://localhost:${PORT}`);
+    });
   })
-
-})
+  .catch((err) => {
+    console.error("Database connection failed:", err);
+  });

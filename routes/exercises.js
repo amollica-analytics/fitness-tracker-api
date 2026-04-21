@@ -1,9 +1,20 @@
+/**
+ * Exercise Routes
+ * ---------------------------------------------------
+ * Handles CRUD operations for exercises.
+ * All routes require authentication.
+ */
+
 const express = require('express')
 const router = express.Router()
 
 const { Exercise } = require('../models')
 const auth = require('../middleware/auth')
 
+/**
+ * POST /exercises
+ * Create a new exercise inside a workout
+ */
 router.post('/', auth, async (req, res) => {
 
   const exercise = await Exercise.create({
@@ -11,13 +22,17 @@ router.post('/', auth, async (req, res) => {
     sets: req.body.sets,
     reps: req.body.reps,
     weight: req.body.weight,
-    WorkoutId: req.body.workoutId
+    WorkoutId: req.body.workoutId // associate exercise with a workout
   })
 
   res.json(exercise)
 
 })
 
+/**
+ * GET /exercises
+ * Retrieve all exercises
+ */
 router.get('/', auth, async (req, res) => {
 
   try {
@@ -34,6 +49,10 @@ router.get('/', auth, async (req, res) => {
 
 })
 
+/**
+ * PUT /exercises/:id
+ * Update an existing exercise
+ */
 router.put('/:id', auth, async (req, res) => {
 
   const exercise = await Exercise.findByPk(req.params.id)
@@ -53,6 +72,10 @@ router.put('/:id', auth, async (req, res) => {
 
 })
 
+/**
+ * DELETE /exercises/:id
+ * Remove an exercise from the database
+ */
 router.delete('/:id', auth, async (req, res) => {
 
   const exercise = await Exercise.findByPk(req.params.id)

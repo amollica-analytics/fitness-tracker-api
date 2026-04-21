@@ -1,9 +1,20 @@
+/**
+ * Workout Routes
+ * ---------------------------------------------------
+ * Allows authenticated users to create, view,
+ * update, and delete their workouts.
+ */
+
 const express = require('express')
 const router = express.Router()
 
 const { Workout } = require('../models')
 const auth = require('../middleware/auth')
 
+/**
+ * GET /workouts
+ * Retrieve workouts belonging to the logged-in user
+ */
 router.get('/', auth, async (req, res) => {
 
   const workouts = await Workout.findAll({
@@ -14,6 +25,10 @@ router.get('/', auth, async (req, res) => {
 
 })
 
+/**
+ * POST /workouts
+ * Create a new workout
+ */
 router.post('/', auth, async (req, res) => {
 
   const workout = await Workout.create({
@@ -27,6 +42,10 @@ router.post('/', auth, async (req, res) => {
 
 })
 
+/**
+ * PUT /workouts/:id
+ * Update a workout (only if owned by the user)
+ */
 router.put('/:id', auth, async (req, res) => {
 
   const workout = await Workout.findByPk(req.params.id)
@@ -35,6 +54,7 @@ router.put('/:id', auth, async (req, res) => {
     return res.status(404).json({ message: "Workout not found" })
   }
 
+  // Ensure the logged-in user owns the workout
   if (workout.UserId !== req.user.id) {
     return res.status(403).json({ message: "Not your workout" })
   }
@@ -49,6 +69,10 @@ router.put('/:id', auth, async (req, res) => {
 
 })
 
+/**
+ * DELETE /workouts/:id
+ * Delete a workout (only if owned by the user)
+ */
 router.delete('/:id', auth, async (req, res) => {
 
   try {
@@ -59,7 +83,7 @@ router.delete('/:id', auth, async (req, res) => {
       return res.status(404).json({ message: "Workout not found" })
     }
 
-    // make sure user owns the workout
+    // Ensure the logged-in user owns the workout
     if (workout.UserId !== req.user.id) {
       return res.status(403).json({ message: "Not authorized to delete this workout" })
     }
