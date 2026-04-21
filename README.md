@@ -65,13 +65,74 @@ The API will run at:
 
 http://localhost:3000
 
-How to Use the API:
-Register a user account
-Log in to receive a JWT token
-Add the token to all protected requests:
-Authorization: Bearer YOUR_TOKEN
-Use the API to create, view, update, and delete workouts and exercises
+## Authentication Guide
+Step 1: Register User
 
+POST /auth/register
+
+{
+  "username": "john",
+  "email": "john@example.com",
+  "password": "password123",
+  "role": "user"
+}
+Step 2: Login User
+
+POST /auth/login
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+Response:
+
+{
+  "token": "JWT_TOKEN_HERE"
+}
+Step 3: Add Token to Requests
+
+Add this header to ALL protected routes:
+
+Authorization: Bearer YOUR_TOKEN
+User Roles & Permissions
+
+User
+Can manage their own workouts
+Can view exercises
+Cannot access other users' data
+
+Admin
+Full access to all users
+Can delete users
+Can access all workouts and exercises
+API Endpoints
+
+Users
+Method	Endpoint	Access
+GET	/users	Admin
+DELETE	/users/:id	Admin
+
+Workouts
+Method	Endpoint	Access
+POST	/workouts	Auth User
+GET	/workouts	Auth User
+DELETE	/workouts/:id	Owner/Admin
+
+Exercises
+Method	Endpoint	Access
+POST	/exercises	Auth User
+GET	/exercises	Auth User
+
+Error Handling
+401 Unauthorized
+{ "message": "No token provided" }
+403 Forbidden
+{ "message": "Forbidden - insufficient permissions" }
+404 Not Found
+{ "message": "Resource not found" }
+500 Server Error
+{ "message": "Internal Server Error" }
 Postman Documentation:
 [https://documenter.getpostman.com/view/52311306/2sBXitCmzG]
 
