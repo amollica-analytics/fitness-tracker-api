@@ -41,6 +41,16 @@ app.use("/exercises", exerciseRoutes);
 const authRoutes = require("./routes/auth");
 
 app.use("/auth", authRoutes);
+app.get("/", (req, res) => {
+  res.json({
+    message: "Fitness Tracker API is running 🚀",
+    endpoints: {
+      users: "/users",
+      workouts: "/workouts",
+      exercises: "/exercises"
+    }
+  })
+})
 // ======================
 // ERROR HANDLER (MUST BE LAST MIDDLEWARE)
 // ======================
